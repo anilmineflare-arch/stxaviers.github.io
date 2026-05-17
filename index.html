@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramanada Primary & HighSchool</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a3a2a;
+    --moss: #2d5a3d;
+    --sage: #4a7c59;
+    --leaf: #6ba368;
+    --mint: #a8d5b5;
+    --cream: #faf7f0;
+    --warm: #f5ede0;
+    --gold: #d4a853;
+    --amber: #e8c174;
+    --charcoal: #2a2a2a;
+    --text: #3a3a3a;
+    --muted: #777;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(250,247,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(106,163,104,0.2);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(26,58,42,0.12); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+.nav-logo-icon {
+  width: 48px; height: 48px;
+  background: var(--forest);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  overflow: hidden; /* ← clips the image to the box */
+}
+
+.nav-logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ← scales image to fill without distortion */
+  display: block;
+}
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--moss); }
+
+  .nav-cta {
+    background: var(--forest);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--moss) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding: 0 5%;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(106,163,104,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,168,83,0.12) 0%, transparent 60%);
+  }
+
+  .hero-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 660px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(168,213,181,0.15);
+    border: 1px solid rgba(168,213,181,0.3);
+    color: #e8d674;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before { content: '★'; color: var(--gold); font-size: 10px; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--forest);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 15px 34px;
+    border: none; border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212,168,83,0.4);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 15px 34px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+  .hero-stats {
+    position: absolute; right: 5%; bottom: 12%;
+    display: flex; flex-direction: column; gap: 20px;
+    z-index: 2;
+    animation: fadeIn 1.2s ease both 0.4s;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 18px 24px;
+    text-align: center;
+    min-width: 130px;
+  }
+  .stat-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #e8d674;
+    display: block;
+  }
+  .stat-card .label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.781);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 5%;
+    display: flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .scroll-hint::before {
+    content: '';
+    width: 1px; height: 40px;
+    background: rgba(255,255,255,0.2);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--sage);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--leaf);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .hero-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;       /* fills entire hero, no stretching */
+  object-position: center;
+  z-index: 0;              /* bottom layer */
+}
+
+  /* ── ABOUT ── */
+  .about { background: var(--warm); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .about-img-stack {
+    position: relative;
+    height: 460px;
+  }
+
+  .about-img-main {
+    position: absolute;
+     height: 380px;
+    background: linear-gradient(135deg, var(--moss), var(--sage));
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    box-shadow: 0 20px 60px rgba(26,58,42,0.25);
+  }
+
+  .about-img-accent {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 55%; height: 200px;
+    background: linear-gradient(135deg, var(--gold), var(--amber));
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px;
+    box-shadow: 0 12px 40px rgba(212,168,83,0.3);
+  }
+
+  .about-features {
+    list-style: none;
+    margin-top: 32px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .about-features li {
+    display: flex; align-items: flex-start; gap: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .feat-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: rgba(74,124,89,0.12);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs { background: var(--cream); }
+  .programs-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .prog-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .prog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26,58,42,0.1);
+  }
+
+  .prog-thumb {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .prog-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.1));
+  }
+
+  .prog-body { padding: 24px; }
+  .prog-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .prog-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 10px;
+  }
+  .prog-body p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .prog-meta {
+    display: flex; gap: 16px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .prog-meta span { display: flex; align-items: center; gap: 5px; }
+
+  /* ── FACULTY ── */
+  .faculty { background: var(--forest); }
+  .faculty .section-label { color: var(--mint); }
+  .faculty .section-title { color: #fff; }
+  .faculty .section-sub { color: rgba(255,255,255,0.5); }
+
+  .faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .faculty-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .faculty-card:hover { background: rgba(255,255,255,0.09); }
+
+  .faculty-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    border: 3px solid rgba(168,213,181,0.25);
+  }
+  .faculty-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .faculty-card .role {
+    font-size: 0.78rem;
+    color: var(--mint);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .faculty-card .exp {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── NEWS ── */
+  .news { background: var(--warm); }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .news-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s;
+  }
+  .news-card:hover { box-shadow: 0 12px 40px rgba(26,58,42,0.1); }
+
+  .news-card.featured .news-img { height: 260px; }
+  .news-img {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+
+  .news-body { padding: 20px; }
+  .news-date {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .news-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+  .news-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--cream); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 56px;
+    align-items: start;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+
+  .info-item {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .info-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: rgba(74,124,89,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .info-item h4 {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--forest);
+    margin-bottom: 4px;
+  }
+  .info-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+
+  .contact-form {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 30px rgba(26,58,42,0.06);
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--forest);
+    margin-bottom: 24px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--sage); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--forest);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 15px;
+    border: none; border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .form-submit:hover { background: var(--moss); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.6);
+    padding: 60px 5% 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin: 16px 0 20px;
+    max-width: 260px;
+  }
+
+  .footer-col h5 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: #fff; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.8rem; }
+
+  .social-links { display: flex; gap: 12px; }
+  .social-links a {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .social-links a:hover { background: rgba(255,255,255,0.15); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-stats { display: none; }
+    .about-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .programs-grid, .faculty-grid { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .programs-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon"><img src="l1.jpg" alt="no load"></div>
+    <span class="nav-logo-text">St.Xaviers Eng Medium High School</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#faculty">Faculty</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#contact" class="nav-cta">Apply Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home"> 
+    <img class="hero-img" src="f2.jpg" alt="School Campus">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-bg"></div>
+  <div class="hero-dots"> </div>
+  <div class="hero-content">
+    <div class="hero-tag">Est. 2015 · CBSE Affiliated · K–12</div>
+    <h1>Where Young<br>Minds <em>Flourish</em></h1>
+    <p>A nurturing environment that blends rigorous academics with creative expression, preparing students to lead with curiosity, confidence, and character.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Apply for 2025–26</a>
+      <a href="#about" class="btn-ghost">Explore Campus →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <span class="num">98%</span>
+      <span class="label">Board Pass Rate</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">1:18</span>
+      <span class="label">Teacher Ratio</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">40+</span>
+      <span class="label">Co-curriculars</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-img-stack reveal">
+      <div class="about-img-main"><img src="f1.jpg" alt="no load"></div>
+      <div class="about-img-accent">🎓</div>
+    </div>
+    <div class="reveal">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">Learning Beyond the Classroom</h2>
+      <p class="section-sub">Founded in 2015, Paramanad School has nurtured over 12,000 graduates — doctors, engineers, artists, and changemakers — through a philosophy that honours both intellect and imagination.</p>
+      <ul class="about-features">
+        <li>
+          <div class="feat-icon">🔬</div>
+          <div><strong>STEM Labs</strong> — State-of-the-art science, robotics, and computer labs equipped for 21st-century learning.</div>
+        </li>
+        <li>
+          <div class="feat-icon">🎨</div>
+          <div><strong>Arts & Culture</strong> — Dedicated studios for visual art, music, drama, and classical dance.</div>
+        </li>
+        <li>
+          <div class="feat-icon">🏆</div>
+          <div><strong>Sports Excellence</strong> — Olympic-size pool, cricket ground, basketball courts, and trained coaches.</div>
+        </li>
+        <li>
+          <div class="feat-icon">💡</div>
+          <div><strong>Innovation Hub</strong> — Maker space and incubator for student projects and entrepreneurial thinking.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="programs-header">
+    <div>
+      <span class="section-label">Academic Programs</span>
+      <h2 class="section-title">Structured for Every Stage</h2>
+    </div>
+    <p class="section-sub" style="max-width:340px; font-size:0.9rem;">Six thoughtfully designed programs spanning kindergarten through senior secondary.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="prog-card reveal">
+      <div class="prog-thumb" style="background: linear-gradient(135deg,#ffecd2,#fcb69f);">🌼</div>
+      <div class="prog-body">
+        <span class="prog-tag">Foundation</span>
+        <h3>Early Years (K–2)</h3>
+        <p>Play-based learning that builds language, numeracy, and social skills through guided exploration and discovery.</p>
+        <div class="prog-meta">
+          <span>📅 Age 3–7</span>
+          <span>👩‍🏫 1:12 Ratio</span>
+        </div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-thumb" style="background: linear-gradient(135deg,#a8edea,#fed6e3);">🌱</div>
+      <div class="prog-body">
+        <span class="prog-tag">Primary</span>
+        <h3>Grades 3 – 5</h3>
+        <p>Core subject mastery with project-based learning, building independence and critical thinking habits early.</p>
+        <div class="prog-meta">
+          <span>📅 Age 8–11</span>
+          <span>👩‍🏫 1:16 Ratio</span>
+        </div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-thumb" style="background: linear-gradient(135deg,#d4fc79,#96e6a1);">📚</div>
+      <div class="prog-body">
+        <span class="prog-tag">Middle School</span>
+        <h3>Grades 6 – 8</h3>
+        <p>Deepening subject expertise, inter-disciplinary thinking, and introducing elective streams aligned to passions.</p>
+        <div class="prog-meta">
+          <span>📅 Age 11–14</span>
+          <span>👩‍🏫 1:18 Ratio</span>
+        </div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-thumb" style="background: linear-gradient(135deg,#ffeaa7,#dfe6e9);">🔭</div>
+      <div class="prog-body">
+        <span class="prog-tag">Secondary</span>
+        <h3>Grades 9 – 10</h3>
+        <p>CBSE-aligned curriculum with emphasis on board prep, research skills, and community leadership.</p>
+        <div class="prog-meta">
+          <span>📅 Age 14–16</span>
+          <span>👩‍🏫 1:20 Ratio</span>
+        </div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-thumb" style="background: linear-gradient(135deg,#667eea,#764ba2);">🧬</div>
+      <div class="prog-body">
+        <span class="prog-tag">Senior Secondary</span>
+        <h3>Science Stream (11–12)</h3>
+        <p>PCM / PCB with JEE & NEET coaching integrated into the timetable alongside holistic development.</p>
+        <div class="prog-meta">
+          <span>📅 Age 16–18</span>
+          <span>👩‍🏫 1:22 Ratio</span>
+        </div>
+      </div>
+    </div>
+    <div class="prog-card reveal">
+      <div class="prog-thumb" style="background: linear-gradient(135deg,#f093fb,#f5576c);">📊</div>
+      <div class="prog-body">
+        <span class="prog-tag">Senior Secondary</span>
+        <h3>Commerce Stream (11–12)</h3>
+        <p>Accounts, Economics, Business Studies, and applied mathematics with CA Foundation preparation.</p>
+        <div class="prog-meta">
+          <span>📅 Age 16–18</span>
+          <span>👩‍🏫 1:22 Ratio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section class="faculty" id="faculty">
+  <span class="section-label">Our Educators</span>
+  <h2 class="section-title">Passionate, Qualified Faculty</h2>
+  <p class="section-sub">Our teachers average 14 years of classroom experience and undergo 80 hours of professional development annually.</p>
+  <div class="faculty-grid">
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(212,168,83,0.15);">👩‍🏫</div>
+      <h4>Dr. Meera Nair</h4>
+      <span class="role">Principal</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(168,213,181,0.15);">👨‍🔬</div>
+      <h4>Mr. Arjun Sharma</h4>
+      <span class="role">Head of Sciences</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(212,168,83,0.15);">👩‍🎨</div>
+      <h4>Ms. Priya Menon</h4>
+      <span class="role">Head of Arts</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(168,213,181,0.15);">👨‍💻</div>
+      <h4>Mr. Rahul Iyer</h4>
+      <span class="role">Head of Technology</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(212,168,83,0.15);">👩‍⚕️</div>
+      <h4>Ms. Kavitha Rao</h4>
+      <span class="role">Counsellor & Wellness</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(168,213,181,0.15);">👨‍🏃</div>
+      <h4>Mr. Suresh Pillai</h4>
+      <span class="role">Director of Sports</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(212,168,83,0.15);">👩‍📖</div>
+      <h4>Ms. Ananya Verma</h4>
+      <span class="role">Head of Humanities</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+    <div class="faculty-card reveal">
+      <div class="faculty-avatar" style="background:rgba(168,213,181,0.15);">👨‍🎵</div>
+      <h4>Mr. Vikram Das</h4>
+      <span class="role">Head of Music</span>
+      <p class="exp">28 years in education · Msc BEd, Rani Channamma University</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news" id="news">
+  <span class="section-label">Latest Updates</span>
+  <h2 class="section-title">News & Events</h2>
+  <div class="news-grid">
+    <div class="news-card featured reveal">
+      <div class="news-img" style="background: linear-gradient(135deg,#e0f7e9,#b2dfdb);">🏆</div>
+      <div class="news-body">
+        <span class="news-date">12 May 2026</span>
+        <h3>Greenwood Students Win National Robotics Championship</h3>
+        <p>Our Grade 10 team brought home gold at the All-India Robotics Olympiad held in New Delhi, defeating 210 schools from 24 states. Coach Iyer credits daily mentorship sessions and the students' extraordinary grit.</p>
+      </div>
+    </div>
+    <div class="news-card reveal">
+      <div class="news-img" style="background: linear-gradient(135deg,#fff9e6,#ffe082);">🎭</div>
+      <div class="news-body">
+        <span class="news-date">8 May 2026</span>
+        <h3>Annual Cultural Fest "Roots & Wings" — Save the Date</h3>
+        <p>This year's festival celebrates heritage through performance, visual art, and cuisine. Open to all families on 30 May.</p>
+      </div>
+    </div>
+    <div class="news-card reveal">
+      <div class="news-img" style="background: linear-gradient(135deg,#f3e5f5,#e1bee7);">📝</div>
+      <div class="news-body">
+        <span class="news-date">2 May 2026</span>
+        <h3>Admissions Open for 2026–27 Academic Year</h3>
+        <p>Applications are now being accepted for all grades. Early applicants receive priority placement and scholarship assessment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Begin Your Journey With Us</h2>
+    <p class="section-sub">Have questions about admissions, programs, or campus visits? We're here to help.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>Paramanada Primary & High School<br>Tumbagi, Karnataka – 586118</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p>+91 86185021999<br>Mon–Sat, 8 AM – 5 PM</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p>admissions@paramanda.edu.in<br>principal@paramananda.edu.in</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <div>
+          <h4>Office Hours</h4>
+          <p>Monday – Friday: 8:00 AM – 5:00 PM<br>Saturday: 9:00 AM – 1:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>Enquiry Form</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Parent Name</label>
+          <input type="text" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 98765 43210">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Student Grade</label>
+          <select>
+            <option value="">Select Grade</option>
+            <option>Kindergarten</option>
+            <option>Grade 1–2</option>
+            <option>Grade 3–5</option>
+            <option>Grade 6–8</option>
+            <option>Grade 9–10</option>
+            <option>Grade 11–12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Academic Year</label>
+          <select>
+            <option>2026 – 27</option>
+            <option>2027 – 28</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea placeholder="Any specific questions or requirements..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you! We will contact you within 24 hours.')">
+        Submit Enquiry →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration:none;">
+        <div class="nav-logo-icon" style="background:rgba(255,255,255,0.1);"><img src="l1.jpg" alt="no load"></div>
+        <span class="nav-logo-text" style="color:#fff;">Greenwood Academy</span>
+      </a>
+      <p>Shaping curious, compassionate, and capable young leaders since 1989. CBSE affiliated (School No. 930401).</p>
+      <div class="social-links">
+        <a href="#">📘</a>
+        <a href="#">📸</a>
+        <a href="#">▶️</a>
+        <a href="#">🐦</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#faculty">Faculty</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Admissions</h5>
+      <ul>
+        <li><a href="#">Apply Online</a></li>
+        <li><a href="#">Fee Structure</a></li>
+        <li><a href="#">Scholarships</a></li>
+        <li><a href="#">School Tour</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="#">Academic Calendar</a></li>
+        <li><a href="#">Parent Portal</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">Alumni Network</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Paramananda School, Bengaluru. All rights reserved.</p>
+    <p>Privacy Policy · Terms of Use</p>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
